@@ -1,6 +1,7 @@
 package ni.edu.uam.invoicing.model;
 
 import java.time.*;
+import java.util.Collection;
 import javax.persistence.*;
 
 import ni.edu.uam.invoicing.calculator.NextNumberForYearCalculator;
@@ -10,6 +11,12 @@ import org.openxava.calculators.*;
 import lombok.*;
 
 @Entity @Getter @Setter
+@View(members= // This view has no name, so it will be the view used by default
+        "year, number, date;" + // Comma separated means in the same line
+                "customer;" + // Semicolon means a new line
+                "details;" +
+                "remarks"
+)
 public class Invoice {
 
     @Id
@@ -33,6 +40,14 @@ public class Invoice {
     @Required
     @DefaultValueCalculator(CurrentLocalDateCalculator.class) // Current date
     LocalDate date;
+
+    @ManyToOne(fetch=FetchType.LAZY, optional=false) // Customer is required
+    @ReferenceView("Simple") // The view named 'Simple' is used to display this reference
+    Customer customer;
+
+    @ElementCollection
+    @ListProperties("product.number, product.description, quantity")
+    Collection<Detail> details;
 
     @TextArea
     String remarks;
