@@ -1,2 +1,10 @@
-/*C4*/SET SCHEMA PUBLIC
+/*C3*/SET SCHEMA PUBLIC
 DISCONNECT
+/*C4*/SET SCHEMA PUBLIC
+create table Author (oid varchar(32) not null, name varchar(50), primary key (oid))
+alter table Product add column author_oid varchar(32)
+alter table Product add constraint FKtaflstdu5wk59v1xhnk96vdyx foreign key (author_oid) references Author
+INSERT INTO AUTHOR VALUES('8a80946e9e838a8a019e838b41a30000','RolandoGamer')
+COMMIT
+INSERT INTO PRODUCT VALUES(2,'eSTIERCOL',NULL,20000.00,'Sky & Scroll pierden off spawn por intentar farmear aura contra Peterbot video','8a80946e9e83695c019e836b556c0000','8a80946e9e838a8a019e838b41a30000')
+COMMIT

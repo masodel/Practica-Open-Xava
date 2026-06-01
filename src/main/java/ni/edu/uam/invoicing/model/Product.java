@@ -31,4 +31,8 @@ public class Product {
     @TextArea// This is for a big text, a text area or equivalent will be used
     String remarks;
 
+    @ManyToOne(fetch=FetchType.LAZY)
+    @DescriptionsList
+    Author author;
+
 }
