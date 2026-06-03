@@ -5,10 +5,13 @@
 	<JarScanner scanClassPath="false" />
 	<CookieProcessor sameSiteCookies="lax" />
 
-	<Resource name="jdbc/invoicingDS" auth="Container"
+	<Resource name="jdbc/invoicingDS"
+			  auth="Container"
 			  type="javax.sql.DataSource"
-			  maxTotal="100" maxIdle="20" maxWaitMillis="10000"
-			  username="root"
+			  maxTotal="100"
+			  maxIdle="20"
+			  maxWaitMillis="10000"
+			  username="postgres"
 			  password="admin"
 			  driverClassName="org.postgresql.Driver"
 			  url="jdbc:postgresql://localhost:5432/miaplicaciondb"/>
